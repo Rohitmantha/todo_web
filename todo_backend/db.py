@@ -53,7 +53,6 @@ def getdetails(token):
 	user_id=cursor.fetchone()[0]
 	cursor.execute("SELECT * FROM users WHERE user_id = %s", (user_id,))
 	res=cursor.fetchall()[0]
-	list=[]
 	user_id=res[0]
 	name=res[1]
 	email=res[2]
@@ -64,8 +63,7 @@ def getdetails(token):
 		"email":email,
 		"username":username
 	}
-	list.append(data)
-	return list
+	return data
 
 def getalltasks(token):
 	cursor.execute("select user_id from activetokens where token = %s",(token,))

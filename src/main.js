@@ -22,13 +22,14 @@ function displayInfoToast(message) {
 const API_BASE_URL = 'http://localhost:5000';
 
 function logout() {
+    console.log("pressed")
     axios({
         headers: {
             Authorization: localStorage.getItem('token'),
         },
         url: API_BASE_URL + '/logout/',
         method: 'get',
-    }).then(function ({ data }) {
+    }).then(function () {
         localStorage.removeItem('token');
         window.location.href = '/login/';
 
@@ -245,5 +246,3 @@ function deleteTask(id) {
         console.error('Login error:', error);
     });
 }
-
-console.log("hello world");
