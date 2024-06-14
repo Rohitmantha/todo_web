@@ -197,6 +197,7 @@ function editTask(id) {
     donebutton.classList.remove('hideme');
     newtext.classList.remove('hideme');
 
+    newtext.value = task.textContent.trim();
 
 }
 
