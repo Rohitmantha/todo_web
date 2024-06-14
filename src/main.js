@@ -95,7 +95,7 @@ function register() {
     }
 }
 
-function login() {  // Corrected function definition
+function login() {  
     const username = document.getElementById('inputUsername').value.trim();
     const password = document.getElementById('inputPassword').value;
 
@@ -126,11 +126,7 @@ function login() {  // Corrected function definition
     }
 }
 function addTask() {
-    /**
-     * @todo Complete this function.
-     * @todo 1. Send the request to add the task to the backend server.
-     * @todo 2. Add the task in the dom.
-     */
+    
     const taskslist = document.getElementsByClassName('todo-available-tasks')[0];
     const newtask = document.getElementById("inputnewtask").value.trim();
 
@@ -185,30 +181,42 @@ function addTask() {
             console.error('Add task error:', error);
         });
     }
+    else{
+        displayInfoToast("Please enter a task");
+    }
 }
 
 function editTask(id) {
-    const task=document.getElementById('task-' + id)
-    const taskactions=document.getElementById('task-actions-' + id)
-    const newtext=document.getElementById('input-button-' + id)
-    const donebutton=document.getElementById('done-button-' + id)
+    const task = document.getElementById('task-' + id);
+    const taskactions = document.getElementById('task-actions-' + id);
+    const newtext = document.getElementById('input-button-' + id);
+    const donebutton = document.getElementById('done-button-' + id);
 
     taskactions.classList.add('hideme');
     task.classList.add('hideme');
     donebutton.classList.remove('hideme');
     newtext.classList.remove('hideme');
 
-    donebutton.addEventListener("click", () => {
-        
+    newtext.value = task.textContent.trim();
+
+}
+
+
+function updateTask(id){
+    const newtext = document.getElementById('input-button-' + id);
+    const task = document.getElementById('task-' + id);
+    const taskactions = document.getElementById('task-actions-' + id);
+    const donebutton = document.getElementById('done-button-' + id);
+    if (newtext.value !== "") {
         const dataForApiRequest = {
-            title:newtext.value
-        }
+            title: newtext.value
+        };
 
         axios({
             headers: {
                 Authorization: localStorage.getItem('token'),
             },
-            url: API_BASE_URL + '/todo/'+String(id)+'/',
+            url: API_BASE_URL + '/todo/' + String(id) + '/',
             method: 'put',
             data: dataForApiRequest,
         }).then(function ({ data, status }) {
@@ -216,22 +224,22 @@ function editTask(id) {
             task.classList.remove('hideme');
             donebutton.classList.add('hideme');
             newtext.classList.add('hideme');
-            task.textContent=data.title;
+            task.textContent = data.title;
         }).catch(function (error) {
             displayErrorToast('An error occurred during updating value. Please try again later.');
             console.error('Login error:', error);
         });
-    });
+    } else {
+        taskactions.classList.remove('hideme');
+        task.classList.remove('hideme');
+        donebutton.classList.add('hideme');
+        newtext.classList.add('hideme');
+    }
 
 }
 
 function deleteTask(id) {
-    /**
-     * @todo Complete this function.
-     * @todo 1. Send the request to delete the task to the backend server.
-     * @todo 2. Remove the task from the dom.
-     */
-
+    
     const element=document.getElementById("element-"+id);
     axios({
         headers: {
