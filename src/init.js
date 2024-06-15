@@ -59,5 +59,5 @@ axios({
 }).catch(function (error) {
     displayErrorToast('You are not logged in properly. Please try again.');
     console.error(error);
-    window.location.href = '/login/';
+    window.location.href = './login.html';
 });
