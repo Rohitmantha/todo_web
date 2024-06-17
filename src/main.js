@@ -31,7 +31,7 @@ function logout() {
         method: 'get',
     }).then(function () {
         localStorage.removeItem('token');
-        window.location.href = '/login/';
+        window.location.href = './login.html';
 
     }).catch(function (error) {
         displayErrorToast('An error occurred during logging you out. Please try again later.');
@@ -84,7 +84,7 @@ function register() {
             const token = data.token;
             if (token) {
                 localStorage.setItem('token', data.token);
-                window.location.href = '/';
+                window.location.href = './index.html';
             } else {
                 displayErrorToast('An account using same email or username is already created');
             }
@@ -115,7 +115,7 @@ function login() {
             const token = data.token;
             if (token) {
                 localStorage.setItem('token', data.token);
-                window.location.href = '/';
+                window.location.href = './index.html';
             } else {
                 displayErrorToast('Invalid username or password, please try again.');
             }

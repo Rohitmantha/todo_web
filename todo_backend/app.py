@@ -74,3 +74,7 @@ def logout():
     token=request.headers['Authorization']
     removetoken(token)
     return "<p>Logged out</p>"
+
+
+if(__name__=="__main__"):
+    app.run()
