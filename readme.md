@@ -27,20 +27,12 @@ Make sure you have the following installed:
 
     Ensure your MySQL server is up and running. You might need to create a database and update the database configuration in your project.
 
-3. **Run the Setup Script**
+3. **Run the Launch Script**
 
-    For the initial setup, run the `setup.bat` script. This will create a virtual environment, install the required dependencies, and initialize the database:
-
-    ```sh
-    setup.bat
-    ```
-
-4. **Start the Backend**
-
-    Use the `start_backend.bat` script to activate the virtual environment and launch the Flask application:
+    Use the `run_todo_backend.bat` script to create a virtual environment, install the required dependencies, initialize the database, and then launch the Flask application:
 
     ```sh
-    start_backend.bat
+    run_todo_backend.bat
     ```
 
 ### Usage
